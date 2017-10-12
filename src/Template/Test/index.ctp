@@ -8,6 +8,6 @@
 ?>
 
 <h1>Felicitations, vous êtes connecté! </h1>
-<p><?= $user['username'] ?></p>
+
 
 <?= $this->Html->link('Logout', '/users/logout') ?>
