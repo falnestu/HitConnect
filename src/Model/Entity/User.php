@@ -8,10 +8,21 @@
 
 namespace App\Model\Entity;
 
+use Cake\Auth\DefaultPasswordHasher;
+use Cake\ORM\Entity;
 
-class User
+class User extends Entity
 {
-    public $username;
-    public $password;
-    public $role;
+    //<editor-fold desc="Properties">
+    protected function _getFullName(){
+        return $this->_properties['firstname'] . $this->_properties['lastname'];
+    }
+
+    protected function _setPassword($password){
+        if (strlen($password) > 0){
+            return (new DefaultPasswordHasher())->hash($password);
+        }
+    }
+    //</editor-fold>
+
 }

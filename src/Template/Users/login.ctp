@@ -23,7 +23,7 @@ $this->set('activeItem', 'signin');
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h3 class="thin text-center">Sign in to your account</h3>
-                        <p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="signup.html">Register</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
+                        <p class="text-center text-muted">Lorem ipsum dolor sit amet, <?= $this->Html->link('Register','/users/register') ?> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
                         <hr>
 
                         <?= $this->Form->create(); ?>
@@ -31,20 +31,21 @@ $this->set('activeItem', 'signin');
                                 <label>Username/Email <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control">
                             </div>-->
-                            <?= $this->Form->input('username') ?>
+                            <?= $this->Form->input('username', ['templateVars' => ['divclass' => 'top-margin']]) ?>
 <!--                            <div class="top-margin">
                                 <label>Password <span class="text-danger">*</span></label>
                                 <input type="password" class="form-control">
                             </div>-->
-                            <?= $this->Form->input('password') ?>
+                            <?= $this->Form->input('password', ['templateVars' => ['divclass' => 'top-margin']]) ?>
 
                             <hr>
 
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <b><a href="">Forgot password?</a></b>
+                                    <b>Forgot password?</b>
+                                    <!--b><a href="">Forgot password?</a></b-->
                                 </div>
-                                <?= $this->Form->submit('Sign in') ?>
+                                <?= $this->Form->submit('Sign in', ['templateVars' => ['divclass' => 'col-lg-4 text-right']]) ?>
 <!--                               <div class="col-lg-4 text-right">
                                     <button class="btn btn-action" type="submit">Sign in</button>
                                 </div>-->
