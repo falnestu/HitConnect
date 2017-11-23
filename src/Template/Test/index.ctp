@@ -7,7 +7,7 @@
  */
 ?>
 
-<h1>Felicitations, vous êtes connecté! </h1>
+<h1>Felicitations <?= $authUser/*['firstname'] . ' ' . $authUser['lastname']*/ ?>, vous êtes connecté! </h1>
 
 
 <?= $this->Html->link('Logout', '/users/logout') ?>

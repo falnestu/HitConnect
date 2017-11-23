@@ -9,6 +9,7 @@
 namespace App\Form;
 
 
+use App\Model\BU\UsersManager;
 use Cake\Form\Form;
 use Cake\Form\Schema;
 use Cake\Validation\Validator;
@@ -26,7 +27,8 @@ class RegisterForm extends Form
 
     protected function _buildValidator(Validator $validator)
     {
-            return $validator->add('password', [
+            return $validator->notEmpty(['lastname' , 'firstname', 'email', 'password', 'confirm_password'])
+                ->add('password', [
                 'compare' => [
                     'rule' => ['compareWith', 'confirm_password']
                 ]
@@ -35,6 +37,10 @@ class RegisterForm extends Form
 
     protected function _execute(array $data)
     {
-        return $this->validate($data);
+        if (!$this->validate($data))
+            return false;
+
+        return UsersManager::addNewUser($data);
+
     }
 }

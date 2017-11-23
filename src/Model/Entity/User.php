@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
 class User extends Entity
 {
     //<editor-fold desc="Properties">
-    protected function _getFullName(){
+    public function getFullName(){
         return $this->_properties['firstname'] . $this->_properties['lastname'];
     }
 

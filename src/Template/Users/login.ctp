@@ -31,7 +31,7 @@ $this->set('activeItem', 'signin');
                                 <label>Username/Email <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control">
                             </div>-->
-                            <?= $this->Form->input('username', ['templateVars' => ['divclass' => 'top-margin']]) ?>
+                            <?= $this->Form->input('email', ['templateVars' => ['divclass' => 'top-margin']]) ?>
 <!--                            <div class="top-margin">
                                 <label>Password <span class="text-danger">*</span></label>
                                 <input type="password" class="form-control">

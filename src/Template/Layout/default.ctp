@@ -25,9 +25,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <title>
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css('http://fonts.googleapis.com/css?family=Open+Sans:300,400,700', ['media' => 'screen']) ?>
+    <!--?= $this->Html->meta('icon') ?-->
+    <?= $this->Html->meta('icon', 'gt_favicon.png', ['type'=>'image/png']) ?>
     <?= $this->Html->css(['bootstrap.min.css', 'font-awesome.min.css']) ?>
 
     <!-- Custom styles for our template -->
