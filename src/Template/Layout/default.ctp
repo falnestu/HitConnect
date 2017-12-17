@@ -27,13 +27,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <!--?= $this->Html->meta('icon') ?-->
     <?= $this->Html->meta('icon', 'gt_favicon.png', ['type'=>'image/png']) ?>
+    <?= $this->fetch('meta') ?>
+
     <?= $this->Html->css(['bootstrap.min.css', 'font-awesome.min.css']) ?>
 
     <!-- Custom styles for our template -->
     <?= $this->Html->css(['bootstrap-theme.css', 'main.css', 'site.css']) ?>
-
-    <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
+
     <?= $this->fetch('script') ?>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -52,7 +53,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <a class="navbar-brand" href="index.html"><?= $this->Html->image('logo.png', ['alt' => 'Progressus HTML5 template']) ?></a>
             </div>
             <div class="navbar-collapse collapse">
-                <?= $this->element('nav', isset($activeItem) ? ['activeItem' => $activeItem] : []) ?>
+                <?= $this->element($nav, isset($activeItem) ? ['activeItem' => $activeItem] : []) ?>
             </div><!--/.nav-collapse -->
         </div>
     </div>
@@ -109,7 +110,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
                     <div class="col-md-6 widget">
                         <div class="widget-body">
-                            <?= $this->element('menu', isset($activeItem) ? ['activeItem' => $activeItem] : []) ?>
+                            <?= $this->element($menu, isset($activeItem) ? ['activeItem' => $activeItem] : []) ?>
                         </div>
                     </div>
 

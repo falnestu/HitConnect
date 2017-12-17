@@ -9,12 +9,22 @@
 namespace App\Model\MusicBrainz;
 
 
+use App\Model\Entity\Artist;
+
 class ArtistAgent extends BaseMusicBrainzAgent
 {
-    protected $entity = 'artist';
+    protected $entity = 'Artist';
 
     public function __construct()
     {
         parent::__construct();
+    }
+
+    protected function toEntity($json)
+    {
+        return new Artist([
+                'label' => $json['name'],
+                'id_musicbrainz' => $json['id']
+            ]);
     }
 }

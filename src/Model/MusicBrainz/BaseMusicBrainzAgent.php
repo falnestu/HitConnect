@@ -41,7 +41,6 @@ url : https://wiki.musicbrainz.org/Development/XML_Web_Service/Version_2
 namespace App\Model\MusicBrainz;
 
 use Cake\Http\Client;
-use InvalidArgumentException;
 
 abstract class BaseMusicBrainzAgent
 {
@@ -58,23 +57,45 @@ abstract class BaseMusicBrainzAgent
 
     protected $entity;
 
+    protected function getUrl(){
+        return $this->url . strtolower($this->entity);
+}
+
     public function __construct()
     {
         $this->httpClient = new Client();
     }
 
     public function search($query, $limit = null, $offset = null){
-        $strQuery = $this->createQueryString($query);
-        $data = $this->createData($strQuery, $limit, $offset);
-        return $this->httpClient->get($this->url
-                , $data
-                , $this->options);
+        try{
+            $response = $this->httpClientGet($query, $limit, $offset);
+            $json = json_decode($response->body(), true);
+            return $this->toEntities($json);
+        }
+        catch(\Exception $exception){
+            return [];
+        }
 
     }
 
+    protected function toEntities($json)
+    {
+        $nameEntity = strtolower($this->entity).'s';
+        $entities = [];
+        foreach ($json[$nameEntity] as $key=>$value) {
+           // $entities[] = $this->toEntity($value);
+            $namespace = 'App\\Model\\Entity\\' . $this->entity;
+            $entities[] = $namespace::toEntity($value);
+        }
+        return $entities;
+    }
+
+    //protected abstract function toEntity($value);
+
     private function createQueryString($array){
         if(!is_array($array) || empty($array))
-            throw new InvalidArgumentException();
+            return $array;
+            //throw new InvalidArgumentException();
 
         $query = '';
         foreach ($array as $key=>$value) {
@@ -101,6 +122,23 @@ abstract class BaseMusicBrainzAgent
         $data['fmt'] = $this->format;
 
         return $data;
+    }
+
+    /**
+     * @param $query
+     * @param $limit
+     * @param $offset
+     * @return Client\Response
+     */
+    private function httpClientGet($query, $limit, $offset)
+    {
+        $strQuery = $this->createQueryString($query);
+        $data = $this->createData($strQuery, $limit, $offset);
+            return $this->httpClient->get($this->getUrl()
+                , $data
+                , $this->options);
+
+
     }
 
 

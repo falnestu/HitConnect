@@ -22,10 +22,10 @@
                         <hr>
 
                         <?= $this->Form->create($registerForm); ?>
-                            <?= $this->Form->input('lastname', ['label' => __('Nom'),'templateVars' => ['divclass' => 'top-margin']]) ?>
-                            <?= $this->Form->control('firstname',['label' => __('Prénom'), 'templateVars' => ['divclass' => 'top-margin']]) ?>
-                            <?= $this->Form->input('email', ['label' => __('Adresse email'),'templateVars' => ['divclass' => 'top-margin']]) ?>
-                        <div class="row top-margin">
+                            <?= $this->Form->input('lastname', ['label' => __('Nom') ]) ?>
+                            <?= $this->Form->control('firstname',['label' => __('Prénom')]) ?>
+                            <?= $this->Form->input('email', ['label' => __('Adresse email')]) ?>
+                        <div class="row">
                             <?= $this->Form->input('password', ['label' => __('Mot de passe'),'value' => '', 'templateVars' => ['divclass' => 'col-sm-6']]) ?>
                             <?= $this->Form->input('confirm_password', ['label' => __('Confirmez votre mot de passe'),'value' => '', 'type' => 'password', 'templateVars' => ['divclass' => 'col-sm-6']]) ?>
                         </div>

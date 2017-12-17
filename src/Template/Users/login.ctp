@@ -27,28 +27,15 @@ $this->set('activeItem', 'signin');
                         <hr>
 
                         <?= $this->Form->create(); ?>
-<!--                            <div class="top-margin">
-                                <label>Username/Email <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control">
-                            </div>-->
-                            <?= $this->Form->input('email', ['templateVars' => ['divclass' => 'top-margin']]) ?>
-<!--                            <div class="top-margin">
-                                <label>Password <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control">
-                            </div>-->
-                            <?= $this->Form->input('password', ['templateVars' => ['divclass' => 'top-margin']]) ?>
-
+                            <?= $this->Form->input('email') ?>
+                            <?= $this->Form->input('password') ?>
                             <hr>
-
                             <div class="row">
                                 <div class="col-lg-8">
                                     <b>Forgot password?</b>
                                     <!--b><a href="">Forgot password?</a></b-->
                                 </div>
                                 <?= $this->Form->submit('Sign in', ['templateVars' => ['divclass' => 'col-lg-4 text-right']]) ?>
-<!--                               <div class="col-lg-4 text-right">
-                                    <button class="btn btn-action" type="submit">Sign in</button>
-                                </div>-->
                             </div>
                         <?= $this->Form->end(); ?>
 

@@ -9,16 +9,18 @@
 return [
     // Container element used by control().
     //'inputContainer' => '<div class="top-margin">{{content}}</div>',
-    'inputContainer' => '<div class="{{divclass}}">{{content}}</div>',
+    'inputContainer' => '<div class="form-group {{divclass}} {{required}}">{{content}}</div>',
     // Generic input element.
     'input' => '<input type="{{type}}" name="{{name}}" class="form-control"{{attrs}}/>',
     // Submit input element.
     'inputSubmit' => '<input class="btn btn-action" type="{{type}}"{{attrs}}/>',
     // Container for submit buttons.
     'submitContainer' => '<div class="{{divclass}}">{{content}}</div>',
-    //'submitContainer' => '<div class="col-lg-4 text-right">{{content}}</div>',
     // Error message wrapper elements.
-    'error' => '<div class="alert alert-danger">{{content}}</div>',
+    //'error' => '<div class="alert alert-danger">{{content}}</div>',
+    'error' => '<div class="help-block">{{content}}</div>',
+    // Container element used by control() when a field has an error.
+    'inputContainerError' => '<div class="form-group has-error has-feedback {{divclass}} {{required}}">{{content}}{{error}}</div>',
 
     //view/FormHelper
     // Used for button elements in button().

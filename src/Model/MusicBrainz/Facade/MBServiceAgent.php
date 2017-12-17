@@ -8,6 +8,7 @@
 
 namespace App\Model\MusicBrainz\Facade;
 
+use App\Model\MusicBrainz\ArtistAgent;
 use App\Model\MusicBrainz\RecordingAgent;
 
 class MBServiceAgent
@@ -15,5 +16,10 @@ class MBServiceAgent
     public static function recording()
     {
         return new RecordingAgent();
+    }
+
+    public static function artist()
+    {
+        return new ArtistAgent();
     }
 }
