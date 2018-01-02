@@ -19,12 +19,4 @@ class ArtistAgent extends BaseMusicBrainzAgent
     {
         parent::__construct();
     }
-
-    protected function toEntity($json)
-    {
-        return new Artist([
-                'label' => $json['name'],
-                'id_musicbrainz' => $json['id']
-            ]);
-    }
 }

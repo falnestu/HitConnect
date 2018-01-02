@@ -1,15 +1,10 @@
 <?php
+
 $this->assign('title','HitConnect : Login');
-$this->set('activeItem', 'signin');
 ?>
 
 <!-- container -->
 <div class="container">
-
-    <ol class="breadcrumb">
-        <li><a href="index.html">Home</a></li>
-        <li class="active">User access</li>
-    </ol>
 
     <div class="row">
 

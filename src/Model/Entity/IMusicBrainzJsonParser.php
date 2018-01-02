@@ -9,7 +9,7 @@
 namespace App\Model\Entity;
 
 
-interface IJsonParser
+interface IMusicBrainzJsonParser
 {
     public static function ToEntity($json);
 }

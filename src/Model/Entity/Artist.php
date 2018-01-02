@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property string $id_musicbrainz
  * @property string $label
  */
-class Artist extends Entity implements IJsonParser
+class Artist extends Entity implements IMusicBrainzJsonParser
 {
 
     /**
@@ -29,6 +29,9 @@ class Artist extends Entity implements IJsonParser
 
     public static function ToEntity($json)
     {
-        // TODO: Implement ToEntity() method.
+        return new Artist([
+            'id_musicbrainz' => $json['id'],
+            'label' => $json['name']
+        ]);
     }
 }

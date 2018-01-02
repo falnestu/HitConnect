@@ -20,6 +20,7 @@ class UsersController extends AppController
     }
 
     public function login(){
+        $this->set('activeItem', 'signin');
         if($this->request->is('post')){
             $user = $this->Auth->identify(); //si on a une DB
             if($user != null){

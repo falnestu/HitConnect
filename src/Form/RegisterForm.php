@@ -40,7 +40,7 @@ class RegisterForm extends Form
         if (!$this->validate($data))
             return false;
 
-        return UsersManager::addNewUser($data);
+        return UsersManager::add($data);
 
     }
 }

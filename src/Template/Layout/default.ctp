@@ -35,7 +35,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css(['bootstrap-theme.css', 'main.css', 'site.css']) ?>
     <?= $this->fetch('css') ?>
 
-    <?= $this->fetch('script') ?>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -50,7 +50,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <!-- Button for smallest screens -->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                 <!-- Change img logo -->
-                <a class="navbar-brand" href="index.html"><?= $this->Html->image('logo.png', ['alt' => 'Progressus HTML5 template']) ?></a>
+                <a class="navbar-brand" href="/"><?= $this->Html->image('logo.png', ['alt' => 'Progressus HTML5 template']) ?></a>
             </div>
             <div class="navbar-collapse collapse">
                 <?= $this->element($nav, isset($activeItem) ? ['activeItem' => $activeItem] : []) ?>
@@ -135,5 +135,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             ,'headroom.min.js'
             ,'jQuery.headroom.min.js'
             ,'template.js' ]) ?>
+    <?= $this->fetch('script') ?>
 </body>
 </html>

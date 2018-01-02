@@ -20,15 +20,4 @@ class RecordingAgent extends BaseMusicBrainzAgent
     {
         parent::__construct();
     }
-
-    protected function toEntity($json)
-    {
-        $artistjson =$json['artist-credit'][0]['artist'];
-        Artist::ToEntity($artistjson);
-
-        return new Recording([
-            'label' => $json['title'],
-            'id_musicbrainz' => $json['id']
-        ]);
-    }
 }

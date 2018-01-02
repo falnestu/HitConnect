@@ -12,7 +12,7 @@ use Cake\ORM\TableRegistry;
 
 class UsersManager
 {
-    public static function addNewUser($data){
+    public static function add($data){
         $usersTable = TableRegistry::get('Users');
         $user = $usersTable->newEntity($data);
         return $usersTable->save($user);
