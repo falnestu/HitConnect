@@ -19,4 +19,10 @@ class ArtistAgent extends BaseMusicBrainzAgent
     {
         parent::__construct();
     }
+
+    public function searchByArtistId($artist_id){
+        $result = $this->search(['arid' => $artist_id]);
+        return empty($result) ? $result : $result[0];
+
+    }
 }

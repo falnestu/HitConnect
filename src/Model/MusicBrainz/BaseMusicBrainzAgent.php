@@ -6,9 +6,6 @@
  * Time: 15:26
  */
 
-
-
-
 /*The web service root URL is https://musicbrainz.org/ws/2/.
 
 We have 12 resources on our web service which represent core entities in our database:
@@ -75,7 +72,6 @@ abstract class BaseMusicBrainzAgent
         catch(\Exception $exception){
             return [];
         }
-
     }
 
     protected function toEntities($json)
@@ -89,8 +85,6 @@ abstract class BaseMusicBrainzAgent
         }
         return $entities;
     }
-
-    //protected abstract function toEntity($value);
 
     private function createQueryString($array){
         if(!is_array($array) || empty($array))
@@ -137,9 +131,5 @@ abstract class BaseMusicBrainzAgent
             return $this->httpClient->get($this->getUrl()
                 , $data
                 , $this->options);
-
-
     }
-
-
 }

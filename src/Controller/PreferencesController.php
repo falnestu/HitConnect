@@ -9,9 +9,7 @@
 namespace App\Controller;
 
 
-use App\Model\BU\ArtistsManager;
 use App\Model\BU\PreferencesManager;
-use App\Model\BU\RecordingsManager;
 use App\Model\MusicBrainz\Facade\MBServiceAgent;
 
 class PreferencesController extends AppController

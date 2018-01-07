@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Artist[] $artists
  */
-class Tag extends Entity
+class Tag extends Entity implements IMusicBrainzJsonParser
 {
 
     /**
@@ -27,4 +27,11 @@ class Tag extends Entity
         'label' => true,
         'artists' => true
     ];
+
+    public static function ToEntity($json)
+    {
+        return new Tag([
+            'label' => $json['name']
+        ]);
+    }
 }

@@ -29,9 +29,16 @@ class Artist extends Entity implements IMusicBrainzJsonParser
 
     public static function ToEntity($json)
     {
+        $tags = [];
+        if(isset($json['tags'])){
+            foreach($json['tags'] as $tag_json)
+                $tags[] = Tag::ToEntity($tag_json);
+        }
+
         return new Artist([
             'id_musicbrainz' => $json['id'],
-            'label' => $json['name']
+            'label' => $json['name'],
+            'Tags' => $tags
         ]);
     }
 }
