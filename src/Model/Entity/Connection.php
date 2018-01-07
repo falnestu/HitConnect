@@ -35,7 +35,14 @@ class Connection extends Entity
         'connections_status_id' => true,
         'created' => true,
         'modified' => true,
-        'user' => true,
+        'source_user' => true,
+        'target_user' => true,
         'connections_status' => true
     ];
+
+    protected function _getModified(){
+        if($this->_properties['modified'])
+            return $this->_properties['modified']->format('d/m/Y');
+        return $this->_properties['modified'];
+    }
 }

@@ -1,8 +1,3 @@
-<?php
-    $this->assign('title','HitConnect : Home');
-    $this->set('activeItem', 'home');
-?>
-
 <?php $this->start('header') ?>
 <!-- Header -->
 <header id="head">

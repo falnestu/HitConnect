@@ -20,6 +20,7 @@ class UsersController extends AppController
     }
 
     public function login(){
+        $this->set('title', 'Login');
         $this->set('activeItem', 'signin');
         if($this->request->is('post')){
             $user = $this->Auth->identify(); //si on a une DB
@@ -32,6 +33,8 @@ class UsersController extends AppController
     }
 
     public function register(){
+        $this->set('title', 'Register');
+        $this->set('activeItem', 'register');
         $registerForm = new RegisterForm();
         if($this->request->is('post')){
             if ($registerForm->execute($this->request->getData()))

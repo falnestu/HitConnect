@@ -33,9 +33,10 @@
                                 <td><?= $preference->recording->label ?></td>
                                 <td><?= $preference->recording->artist->label ?></td>
                                 <td>
-                                    <?= $this->Form->create($preference,['url'=> ['action' => 'delete'], 'type' => 'delete']); ?>
-                                    <?= $this->Form->hidden('id'); ?>
-                                    <button type="submit" class="btn btn-action btn-xs fa fa-minus"</button>
+                                    <?= $this->Form->create(null,['url'=> ['action' => 'delete', $preference->id] , 'name' => 'post_deletePref' , 'class' => 'd-inline', 'onsubmit' => 'return confirm("Are you sure?")']); ?>
+                                    <button class="btn btn-danger btn-icon">
+                                        <i class='fa fa-trash-o' aria-hidden='true'></i>
+                                    </button>
                                     <?= $this->Form->end(); ?>
                                 </td>
                             </tr>

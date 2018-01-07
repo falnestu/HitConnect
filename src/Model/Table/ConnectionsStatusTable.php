@@ -22,6 +22,7 @@ use Cake\Validation\Validator;
 class ConnectionsStatusTable extends Table
 {
 
+
     /**
      * Initialize method
      *
@@ -60,4 +61,6 @@ class ConnectionsStatusTable extends Table
 
         return $validator;
     }
+
+
 }

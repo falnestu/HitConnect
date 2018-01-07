@@ -17,7 +17,8 @@
                 <?= $this->Form->hidden('label'); ?>
                 <?= $this->Form->hidden('artist.label'); ?>
                 <?= $this->Form->hidden('artist.id_musicbrainz'); ?>
-                <button type="submit" id="add_button" class="btn btn-action fa fa-plus-square-o" aria-hidden="true"</button>
+                <button id="add_button" class="btn btn-action btn-icon">
+                    <i class="fa fa-plus" aria-hidden="true"</button>
                 <?= $this->Form->end(); ?>
             </td>
 

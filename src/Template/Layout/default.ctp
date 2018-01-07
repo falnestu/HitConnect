@@ -23,7 +23,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <meta name="description" content="">
     <meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
     <title>
-        <?= $this->fetch('title') ?>
+        <?= 'HitConnect : ' . $title ?>
     </title>
     <!--?= $this->Html->meta('icon') ?-->
     <?= $this->Html->meta('icon', 'gt_favicon.png', ['type'=>'image/png']) ?>

@@ -17,6 +17,7 @@ use App\Model\MusicBrainz\Facade\MBServiceAgent;
 class PreferencesController extends AppController
 {
     public function index(){
+        $this->set('title', 'Mes préférences');
         $preferences = PreferencesManager::getAllByUserId($this->Auth->user('id'));
         $this->set('preferences', $preferences);
     }
@@ -39,9 +40,9 @@ class PreferencesController extends AppController
         return $this->redirect("/preferences/index");
     }
 
-    public function delete(){
-        if ($this->request->is('delete')){
-            if(PreferencesManager::delete($this->request->getData('id')))
+    public function delete($id){
+        if ($this->request->is('post')){
+            if(PreferencesManager::delete($id))
                 $this->Flash->success(__('Préférence supprimée'));
         }
         return $this->redirect("/preferences/index");

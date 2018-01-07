@@ -1,8 +1,3 @@
-<?php
-
-$this->assign('title','HitConnect : Login');
-?>
-
 <!-- container -->
 <div class="container">
 

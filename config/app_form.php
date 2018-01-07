@@ -22,7 +22,7 @@ return [
     // Container element used by control() when a field has an error.
     'inputContainerError' => '<div class="form-group has-error has-feedback {{divclass}} {{required}}">{{content}}{{error}}</div>',
     // Used for button elements in button().
-    'button' => '<button class="btn btn-action"{{attrs}}>{{text}}</button>',
+    'button' => '<button class="btn btn-action" {{attrs}}>{{text}}</button>',
 
     //view/FormHelper
     // Used for button elements in button().

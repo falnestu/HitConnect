@@ -55,3 +55,11 @@ div.message.hidden {
     content:'*';
     color:red;
 }
+
+.d-inline{
+    display:inline;
+}
+
+.btn-icon{
+    padding : 3px 10px;
+}

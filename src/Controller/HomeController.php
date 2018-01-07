@@ -19,6 +19,7 @@ class HomeController extends AppController
     }
 
     public function index(){
-
+        $this->set('title', 'Home');
+        $this->set('activeItem', 'home');
     }
 }

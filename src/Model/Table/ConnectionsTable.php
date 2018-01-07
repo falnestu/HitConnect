@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Connections Model
  *
- * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $SourceUser
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $TargetUser
  * @property \App\Model\Table\ConnectionsStatusTable|\Cake\ORM\Association\BelongsTo $ConnectionsStatus
  *
  * @method \App\Model\Entity\Connection get($primaryKey, $options = [])
@@ -25,7 +25,9 @@ use Cake\Validation\Validator;
  */
 class ConnectionsTable extends Table
 {
-
+    const STATUS_PENDING = 1;
+    const STATUS_ACCEPTED = 2;
+    const STATUS_REFUSED = 3;
     /**
      * Initialize method
      *
@@ -37,16 +39,22 @@ class ConnectionsTable extends Table
         parent::initialize($config);
 
         $this->setTable('connections');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Users', [
+        $this->belongsTo('Source', [
+            'className' => 'Users',
             'foreignKey' => 'source_users_id',
-            'joinType' => 'INNER'
+            'joinType' => 'INNER',
+            'propertyName' => 'source_user'
         ]);
-        $this->belongsTo('Users', [
+        $this->belongsTo('Target', [
+            'className' => 'Users',
             'foreignKey' => 'target_users_id',
-            'joinType' => 'INNER'
+            'joinType' => 'INNER',
+            'propertyName' => 'target_user'
         ]);
         $this->belongsTo('ConnectionsStatus', [
             'foreignKey' => 'connections_status_id',
@@ -85,4 +93,17 @@ class ConnectionsTable extends Table
 
         return $rules;
     }
+
+    public function findAccepted(Query $query, array $options){
+        return $this->queryWithStatus($query, self::STATUS_ACCEPTED);
+    }
+
+    public function findPending(Query $query, array $options){
+        return $this->queryWithStatus($query, self::STATUS_PENDING);
+    }
+
+    private function queryWithStatus(Query $query, $status){
+        return $query->where(['connections_status_id' => $status]);
+    }
+
 }
