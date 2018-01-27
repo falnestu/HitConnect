@@ -30,11 +30,11 @@
                     <div class="col-md-6">
                         <h3>Suggestions</h3>
                         <ul class="list-group">
-                            <?php foreach($suggestions as $user): ?>
+                            <?php foreach($matches as $user): ?>
                                 <li class="list-group-item">
-                                    <?= $user['fullname'] ?>
+                                    <?= $user->getUsername(); ?> <?= $user->getScore().' %' ?>
                                     <div class="pull-right">
-                                        <?= $this->Form->create(null,['url'=> ['action' => 'add', $user['id']] , 'class' => 'd-inline']); ?>
+                                        <?= $this->Form->create(null,['url'=> ['action' => 'add', $user->getUserId()] , 'class' => 'd-inline']); ?>
                                         <button class="btn btn-success btn-icon"><i class='fa fa-check' aria-hidden='true'></i></button>
                                         <?= $this->Form->end(); ?>
                                     </div>

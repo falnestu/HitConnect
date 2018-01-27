@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\BU\ConnectionsManager;
+use App\Model\Table\ConnectionsTable;
 
 /**
  * Connections Controller
@@ -19,28 +20,16 @@ class ConnectionsController extends AppController
         $this->loadComponent('ConnectionMapper');
     }
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
     public function index()
     {
         $this->set('title', 'Ajout de connexions');
         $user_id = $this->Auth->user('id');
         $invitations = $this->ConnectionMapper->ToSimpleConnections(ConnectionsManager::getInvitationsByUserId($user_id), $user_id);
         $this->set(compact('invitations'));
-        $suggestions = ConnectionsManager::getSuggestionsByUserId($user_id);
-        $this->set(compact('suggestions'));
+        $matches = ConnectionsManager::getMatchesByUserId($user_id);
+        $this->set(compact('matches'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Connection id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $this->set('title', 'Mes connexions');
@@ -49,27 +38,36 @@ class ConnectionsController extends AppController
         $this->set('connections', $connections);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
+    public function add($target_user_id)
     {
-        $connection = $this->Connections->newEntity();
-        if ($this->request->is('post')) {
-            $connection = $this->Connections->patchEntity($connection, $this->request->getData());
-            if ($this->Connections->save($connection)) {
-                $this->Flash->success(__('The connection has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+        if ($this->request->is('post') && isset($target_user_id)) {
+            if (ConnectionsManager::addInvitations($this->Auth->user('id'), $target_user_id)) {
+                $this->Flash->success(__('Invitation envoyée'));
             }
-            $this->Flash->error(__('The connection could not be saved. Please, try again.'));
+            else
+                $this->Flash->error(__('The connection could not be saved. Please, try again.'));
         }
-        $users = $this->Connections->Users->find('list', ['limit' => 200]);
-        $connectionsStatus = $this->Connections->ConnectionsStatus->find('list', ['limit' => 200]);
-        $this->set(compact('connection', 'users', 'connectionsStatus'));
-        $this->set('_serialize', ['connection']);
+        return $this->redirect(['action' => 'index']);
+    }
+
+    public function acceptInvitation($connection_id){
+        if ($this->request->is('post') && isset($connection_id)){
+            if (ConnectionsManager::updateStatus($connection_id, ConnectionsTable::STATUS_ACCEPTED))
+                $this->Flash->success(__('Invitation acceptée!'));
+            else
+                $this->Flash->error(__('The connection could not be saved. Please, try again.'));
+        }
+        return $this->redirect(['action' => 'index']);
+    }
+
+    public function denyInvitation($connection_id){
+        if ($this->request->is('post') && isset($connection_id)){
+            if (ConnectionsManager::updateStatus($connection_id, ConnectionsTable::STATUS_REFUSED))
+                $this->Flash->success(__('Invitation refusée!'));
+            else
+                $this->Flash->error(__('The connection could not be saved. Please, try again.'));
+        }
+        return $this->redirect(['action' => 'index']);
     }
 
     /**

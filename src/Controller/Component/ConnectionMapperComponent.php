@@ -18,7 +18,7 @@ class ConnectionMapperComponent extends Component
             $user = ($connection->source_user->id === $user_id) ? $connection->target_user : $connection->source_user;
             $connections[] = [
                 'id' => $connection->id,
-                'since' => $connection->modified,
+                'since' => $connection->format_modified,
                 'user' =>  [
                     'id' => $user->id,
                     'email' => $user->email,

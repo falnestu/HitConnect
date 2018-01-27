@@ -72,9 +72,17 @@ class ConnectionsTable extends Table
     {
         $validator
             ->integer('id')
-            ->requirePresence('id', 'create')
-            ->notEmpty('id');
+            ->allowEmpty('id', 'create');
 
+        $validator
+            ->integer('source_users_id')
+            ->requirePresence('source_users_id', 'create')
+            ->notEmpty('source_users_id');
+
+        $validator
+            ->integer('target_users_id')
+            ->requirePresence('target_users_id', 'create')
+            ->notEmpty('target_users_id');
         return $validator;
     }
 
@@ -87,8 +95,8 @@ class ConnectionsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['source_users_id'], 'Users'));
-        $rules->add($rules->existsIn(['target_users_id'], 'Users'));
+        $rules->add($rules->existsIn(['source_users_id'], 'Source'));
+        $rules->add($rules->existsIn(['target_users_id'], 'Target'));
         $rules->add($rules->existsIn(['connections_status_id'], 'ConnectionsStatus'));
 
         return $rules;

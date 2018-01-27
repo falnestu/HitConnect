@@ -40,9 +40,11 @@ class Connection extends Entity
         'connections_status' => true
     ];
 
-    protected function _getModified(){
+
+    protected function _getFormatModified(){
         if($this->_properties['modified'])
             return $this->_properties['modified']->format('d/m/Y');
         return $this->_properties['modified'];
     }
+
 }

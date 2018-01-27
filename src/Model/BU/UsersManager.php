@@ -17,4 +17,8 @@ class UsersManager
         $user = $usersTable->newEntity($data);
         return $usersTable->save($user);
     }
+
+    public static function getUsernameById($user_id){
+        return TableRegistry::get('Users')->get($user_id)->Fullname;
+    }
 }

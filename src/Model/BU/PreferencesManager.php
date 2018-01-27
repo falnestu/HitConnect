@@ -67,11 +67,17 @@ class PreferencesManager
         return $userPrefferedTitleTable->delete($entity);
     }
 
-    public static function getAllByUserId($user_id){
+    public static function getAllByUserId($user_id, $withTags = false)
+    {
         $userPrefferedTitleTable = TableRegistry::get('UsersPreferredTitles');
         $userPrefferedTitleQuery = $userPrefferedTitleTable->findAllByUserId($user_id);
-        $userPrefferedTitleQuery->contain('Recordings.Artists');
+        //$userPrefferedTitleQuery = self::getQueryAllByUserId();
+        $containsData = ($withTags) ? 'Recordings.Artists.Tags' : 'Recordings.Artists';
+        $userPrefferedTitleQuery->contain($containsData);
         return $userPrefferedTitleQuery->toArray();
-
     }
+
+    /*static function getQueryAllByUserId($user_id){
+        return TableRegistry::get('UsersPreferredTitles')->findAllByUserId($user_id);
+    }*/
 }
